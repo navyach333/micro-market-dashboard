@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Express Grain Mart",
+    "category": "Food & Grain",
+    "location": "Chandni Chowk",
+    "rating": 4.8
+  },
+  {
+    "name": "City Electronics Hub",
+    "category": "Electronics",
+    "location": "Nehru Place",
+    "rating": 3.9
+  },
+  {
+    "name": "Delhi Textile Co.",
+    "category": "Fabrics",
+    "location": "Gandhinagar",
+    "rating": 2.4
+  },
+  {
+    "name": "Himalayan Organic Tea",
+    "category": "Beverages",
+    "location": "Darjeeling",
+    "rating": 4.9
+  },
+  {
+    "name": "Elite Leather Crafts",
+    "category": "Accessories",
+    "location": "Kanpur",
+    "rating": 4.1
+  },
+  {
+    "name": "Shikha Fab",
+    "category": "Fabrics",
+    "location": "Lajpat Nagar",
+    "rating": 4.9
+  },
+  {
+    "name": "Maa Ambay Fabrics",
+    "category": "Fabrics",
+    "location": "Gandhinagar",
+    "rating": 5
+  },
+  {
+    "name": "Vardhman Textiles",
+    "category": "Textiles",
+    "location": "Delhi",
+    "rating": 3.5
+  },
+  {
+    "name": "Satkar Textile",
+    "category": "Textiles",
+    "location": "Ludhiana",
+    "rating": 4.5
+  },
+  {
+    "name": "Sai Enterprises",
+    "category": "Beverages",
+    "location": "New Delhi",
+    "rating": 4.2
+  },
+  {
+    "name": "Sabaa Nature Foods",
+    "category": "Food & Grains",
+    "location": "Ghaziabad",
+    "rating": 4
+  }
+]
