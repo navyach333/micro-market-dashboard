@@ -13,18 +13,10 @@ app.use(express.json()); // Allows the server to understand JSON data sent from 
 // Path to your database file
 const DATA_FILE = path.join(__dirname, "suppliers.json");
 
-/**
- * INITIALIZATION
- * If suppliers.json doesn't exist, create an empty one so the app doesn't crash.
- */
 if (!fs.existsSync(DATA_FILE)) {
   fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
 }
 
-/**
- * ROUTE 1: GET ALL SUPPLIERS
- * This is triggered when the website loads (initApp)
- */
 app.get("/api/suppliers", (req, res) => {
   try {
     const data = fs.readFileSync(DATA_FILE, "utf8");
