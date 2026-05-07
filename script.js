@@ -6,7 +6,7 @@ let editIndex = -1;
 const container = document.getElementById("supplier-list");
 const searchBar = document.getElementById("search-bar");
 const sortBtn = document.getElementById("sort-btn");
-const API_BASE_URL = "http://localhost:8080/api/suppliers";
+const API_BASE_URL = "https://micro-market-backend.onrender.com/api/suppliers";;
 
 /**
  * 1. APP INITIALIZATION (The Handshake)
@@ -14,8 +14,8 @@ const API_BASE_URL = "http://localhost:8080/api/suppliers";
 async function initApp() {
   showLoadingState();
   try {
-    // Fetch from port 8080
-    const response = await fetch("http://127.0.0.1:8080/api/suppliers");
+    
+    const response = await fetch(API_BASE_URL); 
     if (!response.ok) throw new Error("Server not responding");
 
     suppliers = await response.json();
@@ -89,14 +89,11 @@ async function deleteSupplier(index) {
   if (!confirm("Are you sure you want to remove this vendor?")) return;
 
   try {
-    // We tell the server WHICH index to delete via the URL
-    const response = await fetch(
-      `http://127.0.0.1:8080/api/suppliers/${index}`,
-      {
-        method: "DELETE", // This is the 'Order Type'
-      },
-    );
-
+    
+    const response = await fetch(`${API_BASE_URL}/${index}`, {
+        method: "DELETE",
+    });
+      
     if (response.ok) {
       // Once the server says 'OK', we refresh the screen
       initApp();
