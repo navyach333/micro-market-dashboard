@@ -1,6 +1,6 @@
 // GLOBAL STATE
 let suppliers = [];
-let editIndex = -1;
+let editId = null;
 
 // UI HOOKS
 const container = document.getElementById("supplier-list");
@@ -57,15 +57,15 @@ async function addNewSupplier() {
       if (!response.ok) throw new Error("Save failed");
       showToast("Supplier Added!");
     } else {
-      const id = suppliers[editIndex].id;
-      const response = await fetch(`${API_BASE_URL}/${editIndex}`, {
+  
+      const response = await fetch(`${API_BASE_URL}/${editId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(supplierData),
       });
 
       if (!response.ok) throw new Error("Update failed");
-      editIndex = -1;
+      editId = null;
       const btn = document.querySelector("aside button");
       btn.innerText = "Add to Directory";
       btn.classList.replace("bg-green-600", "bg-blue-600");
@@ -84,13 +84,13 @@ async function addNewSupplier() {
   }
 }
 
-async function deleteSupplier(index) {
+async function deleteSupplier(id) {
   // A quick safety check so we don't delete by accident
   if (!confirm("Are you sure you want to remove this vendor?")) return;
 
   try {
     
-    const response = await fetch(`${API_BASE_URL}/${index}`, {
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
         method: "DELETE",
     });
       
@@ -104,8 +104,11 @@ async function deleteSupplier(index) {
   }
 }
 
-function editSupplier(index) {
-  const s = suppliers[index];
+function editSupplier(id) {
+  const s = suppliers.find(item => item._id === id);
+
+  if(!s) return;
+
   document.getElementById("new-name").value = s.name;
   document.getElementById("new-category").value = s.category;
   document.getElementById("new-location").value = s.location;
@@ -114,7 +117,7 @@ function editSupplier(index) {
   const btn = document.querySelector("aside button");
   btn.innerText = "Update Supplier Info";
   btn.classList.replace("bg-blue-600", "bg-green-600");
-  editIndex = index;
+  editId = id;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -138,8 +141,8 @@ function displaySuppliers(listToDisplay) {
             <div class="flex justify-between items-start mb-6">
                 <span class="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-black uppercase rounded-full">${s.category}</span>
                 <div class="flex gap-2">
-                    <button onclick="editSupplier(${index})" class="text-slate-300 hover:text-blue-500">✎</button>
-                    <button data-index="${index}" class="delete-btn">✕</button>
+                    <button onclick="editSupplier(${s._id})" class="text-slate-300 hover:text-blue-500">✎</button>
+                    <button data-index="${s._id}" class="delete-btn">✕</button>
                 </div>
             </div>
             <h3 class="text-2xl font-bold text-slate-900 mb-1">${s.name}</h3>
